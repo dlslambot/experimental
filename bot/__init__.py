@@ -133,7 +133,7 @@ AUTHORIZED_CHATS = set()
 SUDO_USERS = set()
 AS_DOC_USERS = set()
 AS_MEDIA_USERS = set()
-EXTENTION_FILTER = set(['.torrent'])
+EXTENSION_FILTER = set()
 LEECH_LOG = set()
 MIRROR_LOGS = set()
 try:
