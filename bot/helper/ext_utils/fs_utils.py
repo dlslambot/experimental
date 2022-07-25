@@ -9,7 +9,7 @@ from time import time
 from math import ceil
 
 from .exceptions import NotSupportedExtractionArchive
-from bot import aria2, LOGGER, DOWNLOAD_DIR, get_client, TG_SPLIT_SIZE, EQUAL_SPLITS, STORAGE_THRESHOLD, IS_PREMIUM_USER
+from bot import aria2, LOGGER, DOWNLOAD_DIR, get_client, LEECH_SPLIT_SIZE, EQUAL_SPLITS, STORAGE_THRESHOLD, IS_PREMIUM_USER
 
 if IS_PREMIUM_USER:
     MAX_SPLIT_SIZE = 4194304000
