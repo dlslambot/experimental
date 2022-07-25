@@ -5,7 +5,7 @@ from pyrogram.errors import FloodWait, RPCError
 from PIL import Image
 from threading import RLock
 from bot import DOWNLOAD_DIR, AS_DOCUMENT, AS_DOC_USERS, AS_MEDIA_USERS, CUSTOM_FILENAME, \
-                EXTENSION_FILTER, app, LEECH_LOG, BOT_PM, MaxFileSize, premium_session
+                app, LEECH_LOG, BOT_PM, MaxFileSize, premium_session
 from bot.helper.ext_utils.fs_utils import take_ss, get_media_info, get_path_size
 from bot.helper.ext_utils.bot_utils import get_readable_file_size
 from pyrogram.types import Message
