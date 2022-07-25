@@ -289,31 +289,30 @@ try:
 except:
     TG_SPLIT_SIZE = MaxFileSize
 try:
-    try:
     USER_SESSION_STRING = getConfig('USER_SESSION_STRING')
     if len(USER_SESSION_STRING) == 0:
         raise KeyError
-    premium_session = Client(name='premium_session', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, session_string=USER_SESSION_STRING, parse_mode=enums.ParseMode.HTML, no_updates=True)
-    if not premium_session:
+    rss_session = Client(name='rss_session', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, session_string=USER_SESSION_STRING, parse_mode=enums.ParseMode.HTML, no_updates=True)
+    if not rss_session:
         LOGGER.error("Cannot initialized User Session. Please regenerate USER_SESSION_STRING")
     else:
-        premium_session.start()
-        if (premium_session.get_me()).is_premium:
+        rss_session.start()
+        if (rss_session.get_me()).is_premium:
             if not LEECH_LOG:
                 LOGGER.error("You must set LEECH_LOG for uploads. Eiting now.")
-                try: premium_session.send_message(OWNER_ID, "You must set LEECH_LOG for uploads, Exiting Now...")
+                try: rss_session.send_message(OWNER_ID, "You must set LEECH_LOG for uploads. Bot is closing. Bye.")
                 except Exception as e: LOGGER.exception(e)
-                premium_session.stop()
+                rss_session.stop()
                 app.stop()
                 exit(1)
             TG_SPLIT_SIZE = 4194304000
-            LOGGER.info("Man, You Have Telegram Premium eh? Leech limit is 4GB now.")
+            LOGGER.info("Premium user detected. Upload limit is 4GB now.")
         elif (not DB_URI) or (not RSS_CHAT_ID):
-            premium_session.stop()
+            rss_session.stop()
             LOGGER.info(f"Not using rss. if you want to use fill RSS_CHAT_ID and DB_URI variables.")
 except:
     USER_SESSION_STRING = None
-    premium_session = None
+    rss_session = None
 LOGGER.info(f"TG_SPLIT_SIZE: {TG_SPLIT_SIZE}")
 try:
     STATUS_LIMIT = getConfig('STATUS_LIMIT')
@@ -397,12 +396,12 @@ try:
 except:
     ZIP_UNZIP_LIMIT = None
 try:
-    RSS_CHAT_ID = getConfig('RSS_CHAT_ID')
-    if len(RSS_CHAT_ID) == 0:
+    LEECH_LIMIT = getConfig('LEECH_LIMIT')
+    if len(LEECH_LIMIT) == 0:
         raise KeyError
-    RSS_CHAT_ID = int(RSS_CHAT_ID)
+    LEECH_LIMIT = float(LEECH_LIMIT)
 except:
-    RSS_CHAT_ID = None
+    LEECH_LIMIT = None
 try:
     RSS_DELAY = getConfig('RSS_DELAY')
     if len(RSS_DELAY) == 0:
