@@ -12,6 +12,26 @@ from bot import aria2, LOGGER, DOWNLOAD_DIR, get_client, LEECH_SPLIT_SIZE, EQUAL
 
 VIDEO_SUFFIXES = ("M4V", "MP4", "MOV", "FLV", "WMV", "3GP", "MPG", "WEBM", "MKV", "AVI")
 
+
+class TgUploader:
+
+    def __init__(self, name=None, listener=None):
+        self.name = name
+        self.uploaded_bytes = 0
+        self._last_uploaded = 0
+        self.__listener = listener
+        self.__start_time = time()
+        self.__total_files = 0
+        self.__is_cancelled = False
+        self.__as_doc = AS_DOCUMENT
+        self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
+        self.__msgs_dict = {}
+        self.__corrupted = 0
+        self.__resource_lock = RLock()
+        self.__is_corrupted = False
+        self.__sent_msg = app.get_messages(self.__listener.message.chat.id, self.__listener.uid)
+        self.__user_settings()
+
 def clean_download(path: str):
     if ospath.exists(path):
         LOGGER.info(f"Cleaning Download: {path}")
