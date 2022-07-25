@@ -37,12 +37,12 @@ class TgUploader:
         self.__app = app
         self.__user_id = listener.message.from_user.id
         self.isPrivate = listener.message.chat.type in ['private', 'group']
-    def upload(self):
+     def upload(self):
         path = f"{DOWNLOAD_DIR}{self.__listener.uid}"
         size = get_readable_file_size(get_path_size(path))
         for dirpath, subdir, files in sorted(walk(path)):
             for file_ in sorted(files):
-                if not file_.lower().endswith(tuple(EXTENSION_FILTER)):
+                if not file_.lower().endswith(tuple(EXTENTION_FILTER)):
                     self.__total_files += 1
                     up_path = ospath.join(dirpath, file_)
                     if ospath.getsize(up_path) == 0:
