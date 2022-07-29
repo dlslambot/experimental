@@ -129,7 +129,7 @@ def stats(update, context):
             f'<b>└ Memory Used:</b> {mem_u}\n'
     heroku = getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
     if heroku: stats += heroku
-    update.effective_message.reply_photo(IMAGE_STATS, stats, parse_mode=ParseMode.HTML
+    update.effective_message.reply_photo(IMAGE_STATS, stats, parse_mode=ParseMode.HTML)
 
 
 def start(update, context):
