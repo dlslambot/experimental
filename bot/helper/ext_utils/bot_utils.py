@@ -8,6 +8,7 @@ from requests import head as rhead
 from urllib.request import urlopen
 from telegram import InlineKeyboardMarkup
 from telegram.ext import CallbackQueryHandler
+from telegram.message import Message
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot import download_dict, download_dict_lock, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR, dispatcher
 from bot.helper.telegram_helper.button_build import ButtonMaker
