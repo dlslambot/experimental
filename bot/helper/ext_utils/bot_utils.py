@@ -252,17 +252,19 @@ def get_readable_message():
                 elif 'MB/s' in spd:
                     upspeed_bytes += float(spd.split('M')[0]) * 1048576
         bmsg += f"\n<b>DL:</b> {get_readable_file_size(dlspeed_bytes)}/s | <b>UL:</b> {get_readable_file_size(upspeed_bytes)}/s"
+        
         buttons = ButtonMaker()
-        buttons.sbutton("Statistics", str(FOUR))
-        sbutton = InlineKeyboardMarkup(buttons.build_menu(1))
+        buttons.sbutton("Statistics", str(THREE))
+        buttons.sbutton("Refresh", str(ONE))	
+        buttons.sbutton("Close", str(TWO))	
+        sbutton = InlineKeyboardMarkup(buttons.build_menu(3))
+
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
+            msg += f"\n<b>Total Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("Previous", "status pre")
+            buttons.sbutton("Prev", "status pre")
             buttons.sbutton(f"{PAGE_NO}/{pages}", str(THREE))
             buttons.sbutton("Next", "status nex")
-            buttons.sbutton("Statistics", str(FOUR))
-            buttons.sbutton("Refresh", str(ONE))	
-            buttons.sbutton("Close", str(TWO))	
             button = InlineKeyboardMarkup(buttons.build_menu(3))
             return msg + bmsg, button
         return msg + bmsg, sbutton
