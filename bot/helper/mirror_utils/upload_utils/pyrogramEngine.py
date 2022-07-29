@@ -1,14 +1,16 @@
-from os import remove as osremove, path as ospath, mkdir, walk, listdir, rmdir, makedirs
-from sys import exit as sysexit
-from json import loads as jsnloads
-from shutil import rmtree, disk_usage
+from logging import getLogger, ERROR
+from os import remove as osremove, walk, path as ospath, rename as osrename
+from time import time, sleep
+from pyrogram.errors import FloodWait, RPCError
 from PIL import Image
-from magic import Magic
-from subprocess import run as srun, check_output
-from time import time
-from math import ceil
+from threading import RLock
+from pyrogram import Client, enums
 
-from bot import aria2, LOGGER, AS_DOCUMENT, DOWNLOAD_DIR, get_client, LEECH_SPLIT_SIZE, EQUAL_SPLITS, STORAGE_THRESHOLD
+from bot import DOWNLOAD_DIR, AS_DOCUMENT, AS_DOC_USERS, AS_MEDIA_USERS, CUSTOM_FILENAME, \
+                 EXTENTION_FILTER, app, LEECH_LOG, BOT_PM
+from bot.helper.ext_utils.fs_utils import take_ss, get_media_info, get_video_resolution, get_path_size
+from bot.helper.ext_utils.bot_utils import get_readable_file_size
+
 
 VIDEO_SUFFIXES = ("M4V", "MP4", "MOV", "FLV", "WMV", "3GP", "MPG", "WEBM", "MKV", "AVI")
 
