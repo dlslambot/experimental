@@ -4,7 +4,7 @@ from subprocess import run as srun, check_output
 from psutil import disk_usage, cpu_percent, swap_memory, cpu_count, virtual_memory, net_io_counters, boot_time
 from time import time
 from sys import executable
-from telegram import InlineKeyboardMarkup
+from telegram import ParseMode, InlineKeyboardMarkup
 from telegram.ext import CommandHandler
 
 from bot import bot, dispatcher, updater, botStartTime, IGNORE_PENDING_REQUESTS, LOGGER, Interval, INCOMPLETE_TASK_NOTIFIER, DB_URI, alive, app, \
@@ -88,10 +88,6 @@ def getHerokuDetails(h_api_key, h_app_name):
     except Exception as g:
         LOGGER.error(g)
         return None
-      
-      
-      
-IMAGE_X = "https://telegra.ph/file/8048bb50d3774094c72d2.jpg"
 
 def stats(update, context):
     if ospath.exists('.git'):
@@ -133,7 +129,7 @@ def stats(update, context):
             f'<b>└ Memory Used:</b> {mem_u}\n'
     heroku = getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
     if heroku: stats += heroku
-    sendMessage(stats, context.bot, update.message)
+    update.effective_message.reply_photo(IMAGE_STATS, stats, parse_mode=ParseMode.HTML
 
 
 def start(update, context):
