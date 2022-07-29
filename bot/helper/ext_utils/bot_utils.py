@@ -12,6 +12,8 @@ from telegram.message import Message
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot import download_dict, download_dict_lock, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR, dispatcher
 from bot.helper.telegram_helper.button_build import ButtonMaker
+import shutil
+import psutil
 
 MAGNET_REGEX = r"magnet:\?xt=urn:btih:[a-zA-Z0-9]*"
 
@@ -397,7 +399,7 @@ def bot_sys_stats():
     cpu = cpu_percent(interval=0.5)
     memory = virtual_memory()
     mem_p = memory.percent
-    total, used, free, disk = disk_usage('/')
+    disk = psutil.disk_usage("/").percent
     total, used, free = shutil.disk_usage(".")
     total = get_readable_file_size(total)
     used = get_readable_file_size(used)
