@@ -416,8 +416,7 @@ def bot_sys_stats():
 ├ SENT : {sent}
 └ RECV : {recv}
 ONGOING TASKS:
-┌ DL: {num_active}
-├ UP : {num_upload}
+┌ UP : {num_upload}
 ├ SPLIT : {num_split}
 ├ ZIP : {num_archi}
 ├ UNZIP : {num_extract}
