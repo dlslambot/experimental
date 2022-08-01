@@ -10,7 +10,7 @@ from telegram import InlineKeyboardMarkup
 from telegram.ext import CallbackQueryHandler
 from telegram.message import Message
 from bot.helper.telegram_helper.bot_commands import BotCommands
-from bot import download_dict, download_dict_lock, OWNER_ID, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR, status_reply_dict_lock, dispatcher
+from bot import download_dict, download_dict_lock, OWNER_ID, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR, status_reply_dict_lock, status_reply_dict, dispatcher
 from bot.helper.telegram_helper.button_build import ButtonMaker
 import shutil
 import psutil
