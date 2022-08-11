@@ -239,6 +239,7 @@ def get_readable_message():
                 msg += f"\n<b>└ To Stop: </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             elif download.status() == MirrorStatus.STATUS_SEEDING:
                 msg += f"\n<b>├ Size: </b>{download.size()}"
+                msg += f"\n<b>├ At: </b>{time.gmtime(time.time())}"
                 msg += f"\n<b>├ Speed: </b>{get_readable_file_size(download.torrent_info().upspeed)}/s"
                 msg += f"\n<b>├ Engine: </b> {download.eng()}"
                 msg += f"\n<b>├ Uploaded: </b>{get_readable_file_size(download.torrent_info().uploaded)}"
