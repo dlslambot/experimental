@@ -438,20 +438,15 @@ def bot_sys_stats():
                 num_split += 1
     stats = "Bot Statistics"
     stats = f"""
-┌ BOT UPTIME: {currentTime}
-├ CPU : {cpu}%
-├ RAM : {mem_p}%
-├ USED : {used}
-├ FREE :{free}
-├ SENT : {sent}
-└ RECV : {recv}
+CPU : {progress_bar{cpu}}%
+RAM : {progress_bar{mem_p}}%
+BOT UPTIME: {currentTime}
+
+USED : {used} || FREE :{free}
+SENT : {sent} || RECV : {recv}
 ONGOING TASKS:
-┌ DL : {num_active}
-├ UP : {num_upload}
-├ SPLIT : {num_split}
-├ ZIP : {num_archi}
-├ UNZIP : {num_extract}
-└ TOTAL : {tasks} 
+DL : {num_active} || UP : {num_upload} || SPLIT : {num_split}
+ZIP : {num_archi} || UNZIP : {num_extract} || TOTAL : {tasks} 
 """
     return stats
 
