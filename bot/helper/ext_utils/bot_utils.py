@@ -438,8 +438,8 @@ def bot_sys_stats():
                 num_split += 1
     stats = "Bot Statistics"
     stats = f"""
-CPU : {progress_bar{cpu}}%
-RAM : {progress_bar{mem_p}}%
+CPU:  {progress_bar(cpuUsage)} {cpuUsage}%
+RAM: {progress_bar(mem_p)} {mem_p}%
 BOT UPTIME: {currentTime}
 
 USED : {used} || FREE :{free}
