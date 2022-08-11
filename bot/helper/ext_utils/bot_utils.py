@@ -219,7 +219,7 @@ def get_readable_message():
                 else:
                     msg += f"\n<b>├ Downloaded:</b> {get_readable_file_size(download.processed_bytes())}\n<b>├ Total Size: </b>{download.size()}"
                 msg += f"\n<b>├ Speed:</b> {download.speed()}\n<b>├ ETA:</b> {download.eta()}"
-                msg += f"\n<b>├ Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
+                msg += f"\n<b>├ Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}\n<b>├ At: </b>{time.gmtime(time.time())}"
                 try:
                     msg += f"\n<b>├ Seeders:</b> {download.aria_download().num_seeders}" \
                            f"\n<b>├ Peers:</b> {download.aria_download().connections}"
@@ -239,7 +239,6 @@ def get_readable_message():
                 msg += f"\n<b>└ To Stop: </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             elif download.status() == MirrorStatus.STATUS_SEEDING:
                 msg += f"\n<b>├ Size: </b>{download.size()}"
-                msg += f"\n<b>├ At: </b>{time.gmtime(time.time())}"
                 msg += f"\n<b>├ Speed: </b>{get_readable_file_size(download.torrent_info().upspeed)}/s"
                 msg += f"\n<b>├ Engine: </b> {download.eng()}"
                 msg += f"\n<b>├ Uploaded: </b>{get_readable_file_size(download.torrent_info().uploaded)}"
